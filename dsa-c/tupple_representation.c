@@ -17,15 +17,15 @@ int main()
             TArr[k][0] = i + 1;
             TArr[k][1] = j;
             TArr[k][2] = data;
-            k++;
             TArr[0][2]++;
+            k++;
             j++;
         }
     }
 
-    for (i = 0; i < 4; i++)
+    for (i = 0; i <= TArr[0][2]; i++)
     {
-        for (j = 0; j < 4; j++)
+        for (j = 0; j < 3; j++)
         {
             printf("\t\t%d", TArr[i][j]);
         }
