@@ -1,4 +1,4 @@
-// 27.2.2025, not fully completed
+// 1.3.2025, not fully completed
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,7 +12,7 @@ struct node
 void main()
 {
     printf("\nWritten by Kevin B");
-    struct node *start, *temp;
+    struct node *start, *temp, *ptr;
     start = NULL;
     int ans;
     do
@@ -28,24 +28,48 @@ void main()
         switch (ans)
         {
         case 1:
-            temp = (struct node *)malloc(sizeof(struct node));
+            temp = (struct node *)malloc(sizeof(struct node)); // Allocating memory
             printf("\nEnter data : ");
             scanf("%d", &temp->data);
             temp->next = start;
             start = temp;
             break;
 
+        case 2:
+            temp = (struct node *)malloc(sizeof(struct node)); // Allocating memory
+            printf("\nEnter data : ");
+            scanf("%d", &temp->data);
+            temp->next = NULL;
+            if (start == NULL)
+            {
+                start = temp;
+            }
+            else
+            {
+                ptr = start;
+                while (ptr->next != NULL)
+                {
+                    ptr = ptr->next;
+                }
+                ptr->next = temp;
+            }
+            break;
+
         case 11:
             temp = start;
             while (temp != NULL)
             {
-                printf("|%d|-->", temp->data);
+                printf("[%d|%d]", temp->data, temp->next); // Prints linked list with data and address of next next node
+                if (temp->next != NULL)
+                {
+                    printf("-->");
+                }
                 temp = temp->next;
             }
             break;
 
         case 12:
-            exit(ans);
+            exit(0);
             break;
         }
     } while (ans < 12);
