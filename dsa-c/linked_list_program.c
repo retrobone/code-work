@@ -1,5 +1,5 @@
 // 27.2.2025, not fully completed
-//6.3.2025, 85% complete
+// 09.03.2025, 95% completed
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +13,7 @@ struct node
 void main()
 {
     printf("\nWritten by Kevin B");
-    struct node *start, *newnode, *temp, *pretemp;
+    struct node *start, *newnode, *temp, *pretemp, *pretemp2;
     start = NULL;
     int ans, loc, i, val;
     do
@@ -26,9 +26,13 @@ void main()
         printf("\n 5. Add Node before specific value");
         printf("\n 6. Delete from beginning");
         printf("\n 7. Delete from end");
-        printf("\n 11. Display Linked List");
-        printf("\n 12. Exit");
-        printf("\nEnter choice from 1-12 : ");
+        printf("\n 8. Delete after a specific value");
+        printf("\n 9. Delete before a specific value");
+        printf("\n 10. Delete specific value : ");
+        printf("\n 11. Sort array");
+        printf("\n 12. Display Linked List");
+        printf("\n 13. Exit");
+        printf("\nEnter choice from 1-13 : ");
         scanf("%d", &ans);
 
         switch (ans)
@@ -62,7 +66,7 @@ void main()
             break;
 
         case 3:
-            newnode = (struct node *)malloc(sizeof(struct node));
+            newnode = (struct node *)malloc(sizeof(struct node)); // Allocating memory
             printf("\n Enter data : ");
             scanf("%d", &newnode->data);
             newnode->next = NULL;
@@ -88,7 +92,7 @@ void main()
 
         case 4:
             newnode = (struct node *)malloc(sizeof(struct node));
-            printf("\n Enter data :");
+            printf("\n Enter data : ");
             scanf("%d", &newnode->data);
             printf("\n Enter value to enter after : ");
             scanf("%d", &val);
@@ -103,7 +107,7 @@ void main()
 
         case 5:
             newnode = (struct node *)malloc(sizeof(struct node));
-            printf("\n Enter data :");
+            printf("\n Enter data : ");
             scanf("%d", &newnode->data);
             printf("\n Enter value to enter before : ");
             scanf("%d", &val);
@@ -115,6 +119,57 @@ void main()
             }
             newnode->next = temp;
             pretemp->next = newnode;
+            break;
+
+        case 6:
+            start = start->next;
+            break;
+
+        case 7:
+            temp = start;
+            while (temp->next != NULL)
+            {
+                pretemp = temp;
+                temp = temp->next;
+            }
+            pretemp->next = NULL;
+            break;
+
+        case 8:
+            printf("\n After which value do you want to delete an element : ");
+            scanf("%d", &val);
+            temp = start;
+            while (temp->data != val)
+            {
+                temp = temp->next;
+            }
+            pretemp = temp->next;
+            temp->next = pretemp->next;
+            break;
+
+        case 9:
+            printf("\n Before which value do you want to delete an element : ");
+            scanf("%d", &val);
+            temp = start;
+            while (temp->data != val)
+            {
+                pretemp2 = pretemp;
+                pretemp = temp;
+                temp = temp->next;
+            }
+            pretemp2->next = pretemp->next;
+            break;
+
+        case 10:
+            printf("\n Which value do you want to delete : ");
+            scanf("%d", &val);
+            temp = start;
+            while (temp->data != val)
+            {
+                pretemp = temp;
+                temp = temp->next;
+            }
+            pretemp->next = temp->next;
             break;
 
         case 11:
@@ -134,5 +189,5 @@ void main()
             exit(0);
             break;
         }
-    } while (ans < 12);
+    } while (ans < 14);
 }
